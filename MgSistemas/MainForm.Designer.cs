@@ -30,9 +30,9 @@
         {
             menuStrip1 = new MenuStrip();
             verInventarioToolStripMenuItem = new ToolStripMenuItem();
+            verInventarioToolStripMenuItem1 = new ToolStripMenuItem();
             usuariosToolStripMenuItem = new ToolStripMenuItem();
             administrarUsuariosToolStripMenuItem = new ToolStripMenuItem();
-            verInventarioToolStripMenuItem1 = new ToolStripMenuItem();
             salirToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -54,6 +54,13 @@
             verInventarioToolStripMenuItem.Text = "Inventario";
             verInventarioToolStripMenuItem.Click += verInventarioToolStripMenuItem_Click;
             // 
+            // verInventarioToolStripMenuItem1
+            // 
+            verInventarioToolStripMenuItem1.Name = "verInventarioToolStripMenuItem1";
+            verInventarioToolStripMenuItem1.Size = new Size(180, 22);
+            verInventarioToolStripMenuItem1.Text = "Ver Inventario";
+            verInventarioToolStripMenuItem1.Click += verInventarioToolStripMenuItem1_Click;
+            // 
             // usuariosToolStripMenuItem
             // 
             usuariosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { administrarUsuariosToolStripMenuItem });
@@ -66,12 +73,6 @@
             administrarUsuariosToolStripMenuItem.Name = "administrarUsuariosToolStripMenuItem";
             administrarUsuariosToolStripMenuItem.Size = new Size(184, 22);
             administrarUsuariosToolStripMenuItem.Text = "Administrar Usuarios";
-            // 
-            // verInventarioToolStripMenuItem1
-            // 
-            verInventarioToolStripMenuItem1.Name = "verInventarioToolStripMenuItem1";
-            verInventarioToolStripMenuItem1.Size = new Size(146, 22);
-            verInventarioToolStripMenuItem1.Text = "Ver Inventario";
             // 
             // salirToolStripMenuItem
             // 

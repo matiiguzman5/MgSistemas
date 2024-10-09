@@ -11,5 +11,13 @@ namespace MgSistemas
         {
 
         }
+
+        private void verInventarioToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var InventarioForm = new InventarioForm();
+            InventarioForm.Show();
+
+            this.Hide();
+        }
     }
 }
