@@ -4,6 +4,7 @@ using MgSistemas;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MgSistemas.Migrations
 {
     [DbContext(typeof(PanolContext))]
-    partial class PanolContextModelSnapshot : ModelSnapshot
+    [Migration("20241010022929_AddTableUsers")]
+    partial class AddTableUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,7 +57,7 @@ namespace MgSistemas.Migrations
 
                     b.HasIndex("ProductoIdProducto");
 
-                    b.ToTable("Movimientos");
+                    b.ToTable("movimientos");
                 });
 
             modelBuilder.Entity("MgSistemas.PanolContext+Producto", b =>
@@ -94,23 +97,17 @@ namespace MgSistemas.Migrations
                     b.ToTable("Productos");
                 });
 
-            modelBuilder.Entity("MgSistemas.PanolContext+Usuario", b =>
+            modelBuilder.Entity("MgSistemas.PanolContext+Usuarios", b =>
                 {
-                    b.Property<int>("IdUsuario")
+                    b.Property<int>("IdUsuarios")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdUsuario"));
-
-                    b.Property<bool>("Activo")
-                        .HasColumnType("bit");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdUsuarios"));
 
                     b.Property<string>("Contrasenia")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("FechaCreacion")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("NombreCompleto")
                         .IsRequired()
@@ -124,9 +121,9 @@ namespace MgSistemas.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IdUsuario");
+                    b.HasKey("IdUsuarios");
 
-                    b.ToTable("Usuarios");
+                    b.ToTable("usuarios");
                 });
 
             modelBuilder.Entity("MgSistemas.PanolContext+Movimiento", b =>

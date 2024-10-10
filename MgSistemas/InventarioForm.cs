@@ -7,14 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static MgSistemas.PanolContext;
 
 namespace MgSistemas
 {
     public partial class InventarioForm : Form
     {
-        public InventarioForm()
+        private Usuario _usuarioActual;
+
+        public InventarioForm(Usuario usuario)
         {
             InitializeComponent();
+            _usuarioActual = usuario;
         }
 
 
@@ -46,10 +50,10 @@ namespace MgSistemas
         {
 
         }
-
+        //Btn Editar
         private void button2_Click(object sender, EventArgs e)
         {
-
+            //crear funcionalidad
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -58,8 +62,12 @@ namespace MgSistemas
 
             using (var context = new PanolContext())
             {
+                int codigoProducto;
+                bool isNumeric = int.TryParse(searchTerm, out codigoProducto);
+
                 var productos = context.Productos
-                    .Where(p => p.Nombre.ToLower().Contains(searchTerm) ||
+                    .Where(p => (isNumeric && p.CodigoProducto == codigoProducto) ||
+                                p.Nombre.ToLower().Contains(searchTerm) ||
                                 p.Categoria.ToLower().Contains(searchTerm) ||
                                 p.Descripcion.ToLower().Contains(searchTerm))
                     .ToList();
@@ -70,14 +78,15 @@ namespace MgSistemas
 
         private void btnVolverMainInv_Click(object sender, EventArgs e)
         {
-            var MainForm = new MainForm();
-            MainForm.Show();
+
+            var mainForm = new MainForm(_usuarioActual);
+            mainForm.Show();
             this.Close();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            var agregarProductoForm = new AgregarProductoForm(this); 
+            var agregarProductoForm = new AgregarProductoForm(this, _usuarioActual); 
             agregarProductoForm.ShowDialog();
 
             this.Close();

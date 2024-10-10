@@ -4,6 +4,7 @@ using MgSistemas;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MgSistemas.Migrations
 {
     [DbContext(typeof(PanolContext))]
-    partial class PanolContextModelSnapshot : ModelSnapshot
+    [Migration("20241010014616_AddFechaUltimaModificacion")]
+    partial class AddFechaUltimaModificacion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,7 +57,7 @@ namespace MgSistemas.Migrations
 
                     b.HasIndex("ProductoIdProducto");
 
-                    b.ToTable("Movimientos");
+                    b.ToTable("movimientos");
                 });
 
             modelBuilder.Entity("MgSistemas.PanolContext+Producto", b =>
@@ -92,41 +95,6 @@ namespace MgSistemas.Migrations
                     b.HasKey("IdProducto");
 
                     b.ToTable("Productos");
-                });
-
-            modelBuilder.Entity("MgSistemas.PanolContext+Usuario", b =>
-                {
-                    b.Property<int>("IdUsuario")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdUsuario"));
-
-                    b.Property<bool>("Activo")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Contrasenia")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("FechaCreacion")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("NombreCompleto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NombreUsuario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Rol")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdUsuario");
-
-                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("MgSistemas.PanolContext+Movimiento", b =>

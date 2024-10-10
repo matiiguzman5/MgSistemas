@@ -12,15 +12,19 @@ using static MgSistemas.PanolContext;
 
 namespace MgSistemas
 {
+    
     public partial class AgregarProductoForm : Form
     {
 
         private InventarioForm _inventarioForm;
+        private Producto _producto;
+        private Usuario _usuarioActual;
 
-        public AgregarProductoForm(InventarioForm inventarioForm)
+        public AgregarProductoForm(InventarioForm inventarioForm, Usuario usuarioActual)
         {
             _inventarioForm = inventarioForm;
             InitializeComponent();
+            _usuarioActual = usuarioActual;
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -31,7 +35,7 @@ namespace MgSistemas
 
         private void btnVolverProd_Click(object sender, EventArgs e)
         {
-            var InventarioForm = new InventarioForm();
+            var InventarioForm = new InventarioForm(_usuarioActual);
             InventarioForm.Show();
             this.Close();
         }
@@ -85,7 +89,8 @@ namespace MgSistemas
                             
                             productoExistente.StockActual += cantidadIngresada;
 
-                            
+                            productoExistente.FechaUltimaModificacion = DateTime.Now;
+
                             context.SaveChanges();
 
                             MessageBox.Show("El stock ha sido actualizado correctamente.");
@@ -119,7 +124,8 @@ namespace MgSistemas
                     Descripcion = txtDescripcion.Text,
                     Categoria = CategoriaBox.SelectedItem?.ToString() ?? "Sin categoría",
                     StockActual = cantidadIngresada,
-                    FechaIngreso = dtpFechaIngreso.Value
+                    FechaIngreso = dtpFechaIngreso.Value,
+                    FechaUltimaModificacion = DateTime.Now
                 };
 
                 context.Productos.Add(nuevoProducto);
@@ -144,10 +150,7 @@ namespace MgSistemas
 
         private void CategoriaBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CategoriaBox.Items.Add("Repuestos");
-            CategoriaBox.Items.Add("Accesorios");
-            CategoriaBox.Items.Add("Sistemas");
-            CategoriaBox.Items.Add("Administrativo");
+            
         }
 
         private void numericCantProd_ValueChanged(object sender, EventArgs e)

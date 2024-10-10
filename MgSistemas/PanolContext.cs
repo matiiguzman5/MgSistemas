@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace MgSistemas
 {
 
@@ -13,7 +14,9 @@ namespace MgSistemas
     {
         public DbSet <Producto> Productos { get; set; }
 
-        public DbSet<Movimiento> movimientos { get; set; }
+        public DbSet<Movimiento> Movimientos { get; set; }
+
+        public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -33,8 +36,22 @@ namespace MgSistemas
             public string Categoria { get; set; }
             public int StockActual { get; set; }
             public DateTime FechaIngreso { get; set; }
-           
+            public DateTime? FechaUltimaModificacion { get; set; }
+
         }
+
+        public class Usuario
+        {
+            [Key]
+            public int IdUsuario { get; set; }
+            public string NombreUsuario { get; set; }
+            public string Contrasenia { get; set; }
+            public string NombreCompleto { get; set; }
+            public string Rol { get; set; }
+            public DateTime FechaCreacion { get; set; }
+            public bool Activo { get; set; }
+        }
+
 
         public class Movimiento
         {
@@ -50,4 +67,5 @@ namespace MgSistemas
         }
 
     }
+  
 }

@@ -51,9 +51,11 @@
             // 
             // dataGridViewProductos
             // 
+            dataGridViewProductos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewProductos.Location = new Point(12, 45);
             dataGridViewProductos.Name = "dataGridViewProductos";
+            dataGridViewProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewProductos.Size = new Size(776, 365);
             dataGridViewProductos.TabIndex = 0;
             dataGridViewProductos.CellContentClick += dataGridView1_CellContentClick;
@@ -88,9 +90,10 @@
             // 
             // btnAgregar
             // 
+            btnAgregar.AutoSize = true;
             btnAgregar.Location = new Point(419, 15);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(119, 23);
+            btnAgregar.Size = new Size(119, 25);
             btnAgregar.TabIndex = 4;
             btnAgregar.Text = "Agregar Producto";
             btnAgregar.UseVisualStyleBackColor = true;
@@ -98,9 +101,10 @@
             // 
             // btnEliminar
             // 
+            btnEliminar.AutoSize = true;
             btnEliminar.Location = new Point(544, 16);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(119, 23);
+            btnEliminar.Size = new Size(119, 25);
             btnEliminar.TabIndex = 5;
             btnEliminar.Text = "Eliminar Producto";
             btnEliminar.UseVisualStyleBackColor = true;
@@ -108,9 +112,10 @@
             // 
             // btnEditar
             // 
+            btnEditar.AutoSize = true;
             btnEditar.Location = new Point(669, 15);
             btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(119, 23);
+            btnEditar.Size = new Size(119, 25);
             btnEditar.TabIndex = 6;
             btnEditar.Text = "Editar Producto";
             btnEditar.UseVisualStyleBackColor = true;
