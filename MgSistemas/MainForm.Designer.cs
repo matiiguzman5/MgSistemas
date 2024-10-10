@@ -31,10 +31,12 @@
             menuStrip1 = new MenuStrip();
             verInventarioToolStripMenuItem = new ToolStripMenuItem();
             verInventarioToolStripMenuItem1 = new ToolStripMenuItem();
+            generarRequerimientoToolStripMenuItem = new ToolStripMenuItem();
             usuariosToolStripMenuItem = new ToolStripMenuItem();
             btnGestionUsuarios = new ToolStripMenuItem();
             salirToolStripMenuItem = new ToolStripMenuItem();
-            generarRequerimientoToolStripMenuItem = new ToolStripMenuItem();
+            desloguearseToolStripMenuItem = new ToolStripMenuItem();
+            btnSalir = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -62,6 +64,12 @@
             verInventarioToolStripMenuItem1.Text = "Ver Inventario";
             verInventarioToolStripMenuItem1.Click += verInventarioToolStripMenuItem1_Click;
             // 
+            // generarRequerimientoToolStripMenuItem
+            // 
+            generarRequerimientoToolStripMenuItem.Name = "generarRequerimientoToolStripMenuItem";
+            generarRequerimientoToolStripMenuItem.Size = new Size(196, 22);
+            generarRequerimientoToolStripMenuItem.Text = "Generar Requerimiento";
+            // 
             // usuariosToolStripMenuItem
             // 
             usuariosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { btnGestionUsuarios });
@@ -78,15 +86,25 @@
             // 
             // salirToolStripMenuItem
             // 
+            salirToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { desloguearseToolStripMenuItem, btnSalir });
             salirToolStripMenuItem.Name = "salirToolStripMenuItem";
             salirToolStripMenuItem.Size = new Size(41, 20);
             salirToolStripMenuItem.Text = "Salir";
+            salirToolStripMenuItem.Click += salirToolStripMenuItem_Click;
             // 
-            // generarRequerimientoToolStripMenuItem
+            // desloguearseToolStripMenuItem
             // 
-            generarRequerimientoToolStripMenuItem.Name = "generarRequerimientoToolStripMenuItem";
-            generarRequerimientoToolStripMenuItem.Size = new Size(196, 22);
-            generarRequerimientoToolStripMenuItem.Text = "Generar Requerimiento";
+            desloguearseToolStripMenuItem.Name = "desloguearseToolStripMenuItem";
+            desloguearseToolStripMenuItem.Size = new Size(180, 22);
+            desloguearseToolStripMenuItem.Text = "Desloguearse";
+            desloguearseToolStripMenuItem.Click += desloguearseToolStripMenuItem_Click;
+            // 
+            // btnSalir
+            // 
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(180, 22);
+            btnSalir.Text = "Cerrar Aplicacion";
+            btnSalir.Click += btnSalir_Click;
             // 
             // MainForm
             // 
@@ -112,5 +130,7 @@
         private ToolStripMenuItem verInventarioToolStripMenuItem1;
         private ToolStripMenuItem salirToolStripMenuItem;
         private ToolStripMenuItem generarRequerimientoToolStripMenuItem;
+        private ToolStripMenuItem desloguearseToolStripMenuItem;
+        private ToolStripMenuItem btnSalir;
     }
 }

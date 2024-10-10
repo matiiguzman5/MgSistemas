@@ -39,10 +39,12 @@
             // 
             // DataGridViewUsuarios
             // 
+            DataGridViewUsuarios.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            DataGridViewUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DataGridViewUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewUsuarios.Location = new Point(12, 45);
+            DataGridViewUsuarios.Location = new Point(12, 46);
             DataGridViewUsuarios.Name = "DataGridViewUsuarios";
-            DataGridViewUsuarios.Size = new Size(776, 364);
+            DataGridViewUsuarios.Size = new Size(776, 352);
             DataGridViewUsuarios.TabIndex = 0;
             DataGridViewUsuarios.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -83,10 +85,11 @@
             EliminarUsuario.TabIndex = 4;
             EliminarUsuario.Text = "Eliminar Usuario";
             EliminarUsuario.UseVisualStyleBackColor = true;
+            EliminarUsuario.Click += EliminarUsuario_Click;
             // 
             // btnVolver1
             // 
-            btnVolver1.Location = new Point(658, 415);
+            btnVolver1.Location = new Point(658, 404);
             btnVolver1.Name = "btnVolver1";
             btnVolver1.Size = new Size(130, 34);
             btnVolver1.TabIndex = 5;
@@ -107,6 +110,7 @@
             Controls.Add(DataGridViewUsuarios);
             Name = "GestionUsuariosForm";
             Text = "GestionUsuariosForm";
+            Load += GestionUsuariosForm_Load;
             ((System.ComponentModel.ISupportInitialize)DataGridViewUsuarios).EndInit();
             ResumeLayout(false);
             PerformLayout();
