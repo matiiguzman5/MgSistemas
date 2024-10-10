@@ -134,6 +134,7 @@
             numericCantProd.Name = "numericCantProd";
             numericCantProd.Size = new Size(120, 23);
             numericCantProd.TabIndex = 12;
+            numericCantProd.ValueChanged += numericCantProd_ValueChanged;
             // 
             // numericCodeProd
             // 

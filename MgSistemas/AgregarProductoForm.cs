@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,12 +14,13 @@ namespace MgSistemas
 {
     public partial class AgregarProductoForm : Form
     {
-        public AgregarProductoForm()
+
+        private InventarioForm _inventarioForm;
+
+        public AgregarProductoForm(InventarioForm inventarioForm)
         {
+            _inventarioForm = inventarioForm;
             InitializeComponent();
-            
-
-
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -41,51 +43,98 @@ namespace MgSistemas
 
         private void btnAgregaProd_Click(object sender, EventArgs e)
         {
+           
             if (string.IsNullOrWhiteSpace(txtNombreProducto.Text))
             {
                 MessageBox.Show("El nombre del producto es obligatorio.");
                 return;
             }
 
+            
             if (numericCantProd.Value <= 0)
             {
                 MessageBox.Show("La cantidad debe ser mayor a 0.");
                 return;
             }
 
+            
             int codigoProducto = (int)numericCodeProd.Value;
+            int cantidadIngresada = (int)numericCantProd.Value;
+            string nombreProducto = txtNombreProducto.Text.ToLower();
 
             using (var context = new PanolContext())
             {
+                
                 var productoExistente = context.Productos
                     .FirstOrDefault(p => p.CodigoProducto == codigoProducto);
 
-                if(productoExistente != null)
+                if (productoExistente != null)
                 {
-                    MessageBox.Show("Ya este un producto con este codigo. Porfavor, Ingresar un codigo de Producto Distinto");
-                    return ;
+                    
+                    if (productoExistente.Nombre.ToLower() == nombreProducto)
+                    {
+                        
+                        var result = MessageBox.Show(
+                            "Este material ya existe. ¿Desea actualizar el Stock Actual?",
+                            "Producto existente",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            
+                            productoExistente.StockActual += cantidadIngresada;
+
+                            
+                            context.SaveChanges();
+
+                            MessageBox.Show("El stock ha sido actualizado correctamente.");
+                            _inventarioForm.CargarProductos(); 
+                            LimpiarCampos();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se realizaron cambios en el producto.");
+                        }
+                    }
+                    else
+                    {
+                        
+                        MessageBox.Show(
+                            "Ya existe un producto con este código, pero con un nombre diferente. Por favor, ingresa un código de producto distinto.",
+                            "Código de producto duplicado",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                    }
+
+                   
+                    return;
                 }
 
-
-                var Productos = new Producto
+                
+                var nuevoProducto = new Producto
                 {
                     CodigoProducto = codigoProducto,
                     Nombre = txtNombreProducto.Text,
                     Descripcion = txtDescripcion.Text,
-                    Categoria = CategoriaBox.SelectedItem?.ToString()?? "Sin categoria",
-                    StockActual = (int)numericCantProd.Value,
+                    Categoria = CategoriaBox.SelectedItem?.ToString() ?? "Sin categoría",
+                    StockActual = cantidadIngresada,
                     FechaIngreso = dtpFechaIngreso.Value
                 };
 
-                context.Productos.Add(Productos);
+                context.Productos.Add(nuevoProducto);
                 context.SaveChanges();
 
-                MessageBox.Show("Producto Agregado Correctamente");
+                MessageBox.Show("Producto agregado correctamente.");
                 LimpiarCampos();
+                _inventarioForm.CargarProductos(); 
             }
         }
 
-        private void LimpiarCampos() {
+
+
+        private void LimpiarCampos()
+        {
             txtNombreProducto.Clear();
             txtDescripcion.Clear();
             CategoriaBox.SelectedIndex = -1;
@@ -99,6 +148,11 @@ namespace MgSistemas
             CategoriaBox.Items.Add("Accesorios");
             CategoriaBox.Items.Add("Sistemas");
             CategoriaBox.Items.Add("Administrativo");
+        }
+
+        private void numericCantProd_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -104,6 +104,7 @@
             btnEliminar.TabIndex = 5;
             btnEliminar.Text = "Eliminar Producto";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnEditar
             // 

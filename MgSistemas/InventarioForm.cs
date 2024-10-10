@@ -30,14 +30,12 @@ namespace MgSistemas
         }
 
 
-        private void CargarProductos()
+        public void CargarProductos()
         {
             using (var context = new PanolContext())
             {
-                // Obtiene todos los productos de la base de datos y los convierte a una lista.
+                
                 var productos = context.Productos.ToList();
-
-                // Asigna la lista de productos como fuente de datos del DataGridView.
                 dataGridViewProductos.DataSource = productos;
             }
         }
@@ -79,13 +77,44 @@ namespace MgSistemas
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            var AgregarProductoForm = new AgregarProductoForm();
-            AgregarProductoForm.Show();
+            var agregarProductoForm = new AgregarProductoForm(this); 
+            agregarProductoForm.ShowDialog();
 
             this.Close();
         }
 
-       
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewProductos.CurrentRow != null)
+            {
+                int idProducto = (int)dataGridViewProductos.CurrentRow.Cells["IdProducto"].Value;
+
+                var result = MessageBox.Show("¿Estas seguro de que deseas eliminar este producto?", "Confirmar Eliminacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+
+                if (result == DialogResult.Yes)
+                {
+                    using (var context = new PanolContext())
+                    {
+                        var producto = context.Productos.FirstOrDefault(p => p.IdProducto == idProducto);
+
+                        if (producto != null)
+                        {
+                            context.Productos.Remove(producto);
+                            context.SaveChanges();
+
+                            MessageBox.Show("El producto fue eliminado correctamente.");
+
+                            CargarProductos();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Por favor, selecciona un producto para eliminar.");
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }
