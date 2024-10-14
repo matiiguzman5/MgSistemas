@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static MgSistemas.PanolContext;
 
+
+
+
 namespace MgSistemas
 {
     public partial class InventarioForm : Form
@@ -38,7 +41,7 @@ namespace MgSistemas
         {
             using (var context = new PanolContext())
             {
-                
+
                 var productos = context.Productos.ToList();
                 dataGridViewProductos.DataSource = productos;
             }
@@ -86,7 +89,7 @@ namespace MgSistemas
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            var agregarProductoForm = new AgregarProductoForm(this, _usuarioActual); 
+            var agregarProductoForm = new AgregarProductoForm(this, _usuarioActual);
             agregarProductoForm.ShowDialog();
 
             this.Close();
@@ -109,6 +112,18 @@ namespace MgSistemas
 
                         if (producto != null)
                         {
+                            var movimientoEliminacion = new Movimiento
+                            {
+                                IdProducto = producto.IdProducto,
+                                Cantidad = producto.StockActual, // Registrar la cantidad que se está eliminando
+                                FechaMovimiento = DateTime.Now,
+                                TipoMovimiento = "Eliminación",
+                                Usuario = _usuarioActual.NombreUsuario, // Usuario que realiza la eliminación
+                                Detalles = "Producto eliminado del inventario"
+                            };
+
+                            context.Movimientos.Add(movimientoEliminacion);
+
                             context.Productos.Remove(producto);
                             context.SaveChanges();
 
@@ -122,6 +137,47 @@ namespace MgSistemas
                         }
                     }
                 }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMoviento_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewProductos.CurrentRow != null)
+            {
+                int idProducto = (int)dataGridViewProductos.CurrentRow.Cells["IdProducto"].Value;
+                var movimientoForm = new MovimientoForm(idProducto, _usuarioActual, this);
+                movimientoForm.Show();
+                this.Hide();
+
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un producto para gestionar el movimiento");
+            }
+
+
+        }
+
+        private void btnVerMovimientos_Click(object sender, EventArgs e)
+        {
+            
+            if (dataGridViewProductos.CurrentRow != null)
+            {
+                                
+                var cargarMovimientos= new CargarMovimientos( _usuarioActual);
+                cargarMovimientos.Show();
+
+                
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un producto para ver sus movimientos.");
             }
         }
     }

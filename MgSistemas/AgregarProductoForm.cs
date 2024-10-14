@@ -68,9 +68,10 @@ namespace MgSistemas
 
             using (var context = new PanolContext())
             {
-                
+
                 var productoExistente = context.Productos
-                    .FirstOrDefault(p => p.CodigoProducto == codigoProducto);
+                .FirstOrDefault(p => p.Nombre.ToLower() == nombreProducto || p.CodigoProducto == codigoProducto);
+
 
                 if (productoExistente != null)
                 {
@@ -90,6 +91,17 @@ namespace MgSistemas
                             productoExistente.StockActual += cantidadIngresada;
 
                             productoExistente.FechaUltimaModificacion = DateTime.Now;
+
+                            var movimiento = new Movimiento
+                            {
+                                IdProducto = productoExistente.IdProducto,
+                                Cantidad = cantidadIngresada,
+                                FechaMovimiento = DateTime.Now,
+                                TipoMovimiento = "Agregar",
+                                Usuario = _usuarioActual.NombreUsuario,
+                                Detalles = "Actualización de stock"
+                            };
+                            context.Movimientos.Add(movimiento);
 
                             context.SaveChanges();
 
@@ -116,7 +128,8 @@ namespace MgSistemas
                     return;
                 }
 
-                
+
+
                 var nuevoProducto = new Producto
                 {
                     CodigoProducto = codigoProducto,
@@ -125,10 +138,23 @@ namespace MgSistemas
                     Categoria = CategoriaBox.SelectedItem?.ToString() ?? "Sin categoría",
                     StockActual = cantidadIngresada,
                     FechaIngreso = dtpFechaIngreso.Value,
-                    FechaUltimaModificacion = DateTime.Now
+                    FechaUltimaModificacion = null
                 };
 
                 context.Productos.Add(nuevoProducto);
+                context.SaveChanges();
+
+                var movimientoNuevo = new Movimiento
+                {
+                    IdProducto = nuevoProducto.IdProducto,
+                    Cantidad = cantidadIngresada,
+                    FechaMovimiento = DateTime.Now,
+                    TipoMovimiento = "Agregar",
+                    Usuario = _usuarioActual.NombreUsuario,
+                    Detalles = "Nuevo producto agregado"
+                };
+                context.Movimientos.Add(movimientoNuevo);
+
                 context.SaveChanges();
 
                 MessageBox.Show("Producto agregado correctamente.");

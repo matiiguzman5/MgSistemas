@@ -42,6 +42,8 @@
             initialCreateBindingSource = new BindingSource(components);
             addCodigoProducto2BindingSource = new BindingSource(components);
             newReleaseDbBindingSource = new BindingSource(components);
+            btnRetirarProducto = new Button();
+            btnVerMovimientos = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProductos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)panolContextBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)initialCreateBindingSource).BeginInit();
@@ -52,10 +54,10 @@
             // dataGridViewProductos
             // 
             dataGridViewProductos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridViewProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewProductos.Location = new Point(12, 45);
             dataGridViewProductos.Name = "dataGridViewProductos";
-            dataGridViewProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewProductos.Size = new Size(776, 365);
             dataGridViewProductos.TabIndex = 0;
             dataGridViewProductos.CellContentClick += dataGridView1_CellContentClick;
@@ -147,11 +149,33 @@
             // 
             newReleaseDbBindingSource.DataSource = typeof(Migrations.newReleaseDb);
             // 
+            // btnRetirarProducto
+            // 
+            btnRetirarProducto.Location = new Point(496, 416);
+            btnRetirarProducto.Name = "btnRetirarProducto";
+            btnRetirarProducto.Size = new Size(126, 23);
+            btnRetirarProducto.TabIndex = 8;
+            btnRetirarProducto.Text = "Retirar";
+            btnRetirarProducto.UseVisualStyleBackColor = true;
+            btnRetirarProducto.Click += btnMoviento_Click;
+            // 
+            // btnVerMovimientos
+            // 
+            btnVerMovimientos.Location = new Point(56, 416);
+            btnVerMovimientos.Name = "btnVerMovimientos";
+            btnVerMovimientos.Size = new Size(135, 23);
+            btnVerMovimientos.TabIndex = 9;
+            btnVerMovimientos.Text = "Ver Movimientos";
+            btnVerMovimientos.UseVisualStyleBackColor = true;
+            btnVerMovimientos.Click += btnVerMovimientos_Click;
+            // 
             // InventarioForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnVerMovimientos);
+            Controls.Add(btnRetirarProducto);
             Controls.Add(button2);
             Controls.Add(btnEditar);
             Controls.Add(btnEliminar);
@@ -187,5 +211,7 @@
         private BindingSource initialCreateBindingSource;
         private BindingSource newReleaseDbBindingSource;
         private BindingSource addCodigoProducto2BindingSource;
+        private Button btnRetirarProducto;
+        private Button btnVerMovimientos;
     }
 }

@@ -37,6 +37,7 @@
             salirToolStripMenuItem = new ToolStripMenuItem();
             desloguearseToolStripMenuItem = new ToolStripMenuItem();
             btnSalir = new ToolStripMenuItem();
+            verRQPendientesToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -51,7 +52,7 @@
             // 
             // verInventarioToolStripMenuItem
             // 
-            verInventarioToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { verInventarioToolStripMenuItem1, generarRequerimientoToolStripMenuItem });
+            verInventarioToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { verInventarioToolStripMenuItem1, generarRequerimientoToolStripMenuItem, verRQPendientesToolStripMenuItem });
             verInventarioToolStripMenuItem.Name = "verInventarioToolStripMenuItem";
             verInventarioToolStripMenuItem.Size = new Size(72, 20);
             verInventarioToolStripMenuItem.Text = "Inventario";
@@ -95,16 +96,22 @@
             // desloguearseToolStripMenuItem
             // 
             desloguearseToolStripMenuItem.Name = "desloguearseToolStripMenuItem";
-            desloguearseToolStripMenuItem.Size = new Size(180, 22);
+            desloguearseToolStripMenuItem.Size = new Size(165, 22);
             desloguearseToolStripMenuItem.Text = "Desloguearse";
             desloguearseToolStripMenuItem.Click += desloguearseToolStripMenuItem_Click;
             // 
             // btnSalir
             // 
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(180, 22);
+            btnSalir.Size = new Size(165, 22);
             btnSalir.Text = "Cerrar Aplicacion";
             btnSalir.Click += btnSalir_Click;
+            // 
+            // verRQPendientesToolStripMenuItem
+            // 
+            verRQPendientesToolStripMenuItem.Name = "verRQPendientesToolStripMenuItem";
+            verRQPendientesToolStripMenuItem.Size = new Size(196, 22);
+            verRQPendientesToolStripMenuItem.Text = "Ver RQ pendientes";
             // 
             // MainForm
             // 
@@ -132,5 +139,6 @@
         private ToolStripMenuItem generarRequerimientoToolStripMenuItem;
         private ToolStripMenuItem desloguearseToolStripMenuItem;
         private ToolStripMenuItem btnSalir;
+        private ToolStripMenuItem verRQPendientesToolStripMenuItem;
     }
 }

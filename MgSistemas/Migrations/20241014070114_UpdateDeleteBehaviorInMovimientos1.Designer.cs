@@ -4,6 +4,7 @@ using MgSistemas;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MgSistemas.Migrations
 {
     [DbContext(typeof(PanolContext))]
-    partial class PanolContextModelSnapshot : ModelSnapshot
+    [Migration("20241014070114_UpdateDeleteBehaviorInMovimientos1")]
+    partial class UpdateDeleteBehaviorInMovimientos1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,16 +58,16 @@ namespace MgSistemas.Migrations
 
                     b.HasIndex("IdProducto");
 
-                    b.ToTable("Movimientos", (string)null);
+                    b.ToTable("Movimientos");
                 });
 
             modelBuilder.Entity("MgSistemas.PanolContext+Producto", b =>
                 {
-                    b.Property<int?>("IdProducto")
+                    b.Property<int>("IdProducto")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("IdProducto"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdProducto"));
 
                     b.Property<string>("Categoria")
                         .IsRequired()
@@ -92,7 +95,7 @@ namespace MgSistemas.Migrations
 
                     b.HasKey("IdProducto");
 
-                    b.ToTable("Productos", (string)null);
+                    b.ToTable("Productos");
                 });
 
             modelBuilder.Entity("MgSistemas.PanolContext+Usuario", b =>
@@ -127,7 +130,7 @@ namespace MgSistemas.Migrations
 
                     b.HasKey("IdUsuario");
 
-                    b.ToTable("Usuarios", (string)null);
+                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("MgSistemas.PanolContext+Movimiento", b =>
