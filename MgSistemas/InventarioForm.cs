@@ -56,7 +56,16 @@ namespace MgSistemas
         //Btn Editar
         private void button2_Click(object sender, EventArgs e)
         {
-            //crear funcionalidad
+            if (dataGridViewProductos.CurrentRow != null)
+            {
+                int idProducto = (int)dataGridViewProductos.CurrentRow.Cells["IdProducto"].Value;
+                var edicionForm = new EdicionForm(idProducto, _usuarioActual, this);
+                edicionForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Selecciona un producto para editar.");
+            }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)

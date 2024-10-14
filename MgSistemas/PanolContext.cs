@@ -24,17 +24,7 @@ namespace MgSistemas
             optionsBuilder.UseSqlServer("Server=(localdb)\\MgSistemas;Database=MgSistemasDb;User Id=MgSistConnection;Password=MgSist2024;");
 
         }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Movimiento>()
-                .HasOne(m => m.Producto)
-                .WithMany(p => p.Movimientos)
-                .HasForeignKey(m => m.IdProducto)
-                .OnDelete(DeleteBehavior.SetNull); // Establecer a NULL cuando se elimine el producto
-        }
-
-
+               
         public class Producto
         {
             [Key]
@@ -42,6 +32,7 @@ namespace MgSistemas
 
             public int CodigoProducto { get; set; }
             public string Nombre { get; set; }
+
             public string Descripcion { get; set; }
             public string Categoria { get; set; }
             public int StockActual { get; set; }
@@ -51,6 +42,7 @@ namespace MgSistemas
 
             public ICollection<Movimiento> Movimientos { get; set; }
         }
+
 
         public class Usuario
         {
@@ -70,8 +62,7 @@ namespace MgSistemas
             [Key]
             public int IdMovimiento { get; set; }
 
-            // Permite valores nulos para mantener los movimientos cuando el producto ha sido eliminado
-            public int? IdProducto { get; set; }
+            public int? IdProducto { get; set; } // Permitir valores nulos
 
             public string TipoMovimiento { get; set; }
             public int Cantidad { get; set; }
@@ -80,6 +71,14 @@ namespace MgSistemas
             public string Detalles { get; set; }
 
             public Producto Producto { get; set; }
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Movimiento>()
+                .HasOne(m => m.Producto)
+                .WithMany(p => p.Movimientos)
+                .HasForeignKey(m => m.IdProducto)
+                .OnDelete(DeleteBehavior.SetNull); // Establecer a NULL cuando se elimine el producto
         }
 
     }
