@@ -73,5 +73,10 @@ namespace MgSistemas
                 this.Close();
             }
         }
+
+        private void generarRequerimientoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

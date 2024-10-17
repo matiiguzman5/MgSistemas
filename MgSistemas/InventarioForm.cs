@@ -53,7 +53,7 @@ namespace MgSistemas
         {
 
         }
-        //Btn Editar
+      
         private void button2_Click(object sender, EventArgs e)
         {
             if (dataGridViewProductos.CurrentRow != null)
