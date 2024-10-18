@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            groupBox1 = new GroupBox();
-            numericUpDown1 = new NumericUpDown();
+            groupBoxRequerimiento = new GroupBox();
+            LabelFecha = new Label();
+            dtpFechaSolicitud = new DateTimePicker();
+            txtNroRequerimiento = new TextBox();
             btnCancelar = new Button();
             btnAceptar = new Button();
             groupBox4 = new GroupBox();
@@ -37,14 +39,12 @@
             btnAgregar = new Button();
             label5 = new Label();
             label4 = new Label();
-            numericUpDownCant = new NumericUpDown();
+            numericCantidad = new NumericUpDown();
             comboBoxSelecProd = new ComboBox();
             groupBox3 = new GroupBox();
             dataGridViewProductos = new DataGridView();
-            ColumnaProd = new DataGridViewTextBoxColumn();
-            ColumnaCant = new DataGridViewTextBoxColumn();
             label3 = new Label();
-            textBox1 = new TextBox();
+            txtObservaciones = new TextBox();
             groupBox2 = new GroupBox();
             rbtnAlta = new RadioButton();
             rbtnNormal = new RadioButton();
@@ -53,41 +53,66 @@
             comboBoxUsers = new ComboBox();
             btnNuevoRq = new Button();
             btnModificarRq = new Button();
-            groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            CodigoProducto = new DataGridViewTextBoxColumn();
+            producto = new DataGridViewTextBoxColumn();
+            Cantidad = new DataGridViewTextBoxColumn();
+            groupBoxRequerimiento.SuspendLayout();
             groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownCant).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericCantidad).BeginInit();
             groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewProductos).BeginInit();
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
-            // groupBox1
+            // groupBoxRequerimiento
             // 
-            groupBox1.Controls.Add(numericUpDown1);
-            groupBox1.Controls.Add(btnCancelar);
-            groupBox1.Controls.Add(btnAceptar);
-            groupBox1.Controls.Add(groupBox4);
-            groupBox1.Controls.Add(groupBox3);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(textBox1);
-            groupBox1.Controls.Add(groupBox2);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(comboBoxUsers);
-            groupBox1.Location = new Point(12, 36);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(776, 495);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Requerimiento";
+            groupBoxRequerimiento.Controls.Add(LabelFecha);
+            groupBoxRequerimiento.Controls.Add(dtpFechaSolicitud);
+            groupBoxRequerimiento.Controls.Add(txtNroRequerimiento);
+            groupBoxRequerimiento.Controls.Add(btnCancelar);
+            groupBoxRequerimiento.Controls.Add(btnAceptar);
+            groupBoxRequerimiento.Controls.Add(groupBox4);
+            groupBoxRequerimiento.Controls.Add(groupBox3);
+            groupBoxRequerimiento.Controls.Add(label3);
+            groupBoxRequerimiento.Controls.Add(txtObservaciones);
+            groupBoxRequerimiento.Controls.Add(groupBox2);
+            groupBoxRequerimiento.Controls.Add(label2);
+            groupBoxRequerimiento.Controls.Add(label1);
+            groupBoxRequerimiento.Controls.Add(comboBoxUsers);
+            groupBoxRequerimiento.Location = new Point(12, 36);
+            groupBoxRequerimiento.Name = "groupBoxRequerimiento";
+            groupBoxRequerimiento.Size = new Size(776, 495);
+            groupBoxRequerimiento.TabIndex = 0;
+            groupBoxRequerimiento.TabStop = false;
+            groupBoxRequerimiento.Text = "Requerimiento";
+            groupBoxRequerimiento.Enter += groupBoxRequerimiento_Enter;
             // 
-            // numericUpDown1
+            // LabelFecha
             // 
-            numericUpDown1.Location = new Point(467, 23);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(120, 23);
-            numericUpDown1.TabIndex = 11;
+            LabelFecha.AutoSize = true;
+            LabelFecha.Location = new Point(311, 58);
+            LabelFecha.Name = "LabelFecha";
+            LabelFecha.Size = new Size(50, 15);
+            LabelFecha.TabIndex = 14;
+            LabelFecha.Text = "Entrega:";
+            // 
+            // dtpFechaSolicitud
+            // 
+            dtpFechaSolicitud.Format = DateTimePickerFormat.Custom;
+            dtpFechaSolicitud.Location = new Point(368, 55);
+            dtpFechaSolicitud.Name = "dtpFechaSolicitud";
+            dtpFechaSolicitud.RightToLeft = RightToLeft.No;
+            dtpFechaSolicitud.Size = new Size(200, 23);
+            dtpFechaSolicitud.TabIndex = 13;
+            dtpFechaSolicitud.UseWaitCursor = true;
+            dtpFechaSolicitud.Value = new DateTime(2024, 10, 17, 0, 0, 0, 0);
+            // 
+            // txtNroRequerimiento
+            // 
+            txtNroRequerimiento.Location = new Point(467, 22);
+            txtNroRequerimiento.Name = "txtNroRequerimiento";
+            txtNroRequerimiento.Size = new Size(100, 23);
+            txtNroRequerimiento.TabIndex = 12;
             // 
             // btnCancelar
             // 
@@ -106,6 +131,7 @@
             btnAceptar.TabIndex = 9;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = true;
+            btnAceptar.Click += btnAceptar_Click;
             // 
             // groupBox4
             // 
@@ -113,7 +139,7 @@
             groupBox4.Controls.Add(btnAgregar);
             groupBox4.Controls.Add(label5);
             groupBox4.Controls.Add(label4);
-            groupBox4.Controls.Add(numericUpDownCant);
+            groupBox4.Controls.Add(numericCantidad);
             groupBox4.Controls.Add(comboBoxSelecProd);
             groupBox4.Location = new Point(14, 369);
             groupBox4.Name = "groupBox4";
@@ -160,12 +186,12 @@
             label4.TabIndex = 2;
             label4.Text = "Cantidad:";
             // 
-            // numericUpDownCant
+            // numericCantidad
             // 
-            numericUpDownCant.Location = new Point(426, 24);
-            numericUpDownCant.Name = "numericUpDownCant";
-            numericUpDownCant.Size = new Size(120, 23);
-            numericUpDownCant.TabIndex = 1;
+            numericCantidad.Location = new Point(426, 24);
+            numericCantidad.Name = "numericCantidad";
+            numericCantidad.Size = new Size(120, 23);
+            numericCantidad.TabIndex = 1;
             // 
             // comboBoxSelecProd
             // 
@@ -174,6 +200,7 @@
             comboBoxSelecProd.Name = "comboBoxSelecProd";
             comboBoxSelecProd.Size = new Size(112, 23);
             comboBoxSelecProd.TabIndex = 0;
+            comboBoxSelecProd.SelectedIndexChanged += comboBoxSelecProd_SelectedIndexChanged;
             // 
             // groupBox3
             // 
@@ -189,22 +216,12 @@
             // 
             dataGridViewProductos.BackgroundColor = SystemColors.ButtonHighlight;
             dataGridViewProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewProductos.Columns.AddRange(new DataGridViewColumn[] { ColumnaProd, ColumnaCant });
+            dataGridViewProductos.Columns.AddRange(new DataGridViewColumn[] { CodigoProducto, producto, Cantidad });
             dataGridViewProductos.Location = new Point(11, 21);
             dataGridViewProductos.Name = "dataGridViewProductos";
             dataGridViewProductos.Size = new Size(734, 129);
             dataGridViewProductos.TabIndex = 0;
-            // 
-            // ColumnaProd
-            // 
-            ColumnaProd.HeaderText = "Producto";
-            ColumnaProd.Name = "ColumnaProd";
-            ColumnaProd.Resizable = DataGridViewTriState.True;
-            // 
-            // ColumnaCant
-            // 
-            ColumnaCant.HeaderText = "Cantidad";
-            ColumnaCant.Name = "ColumnaCant";
+            dataGridViewProductos.CellContentClick += dataGridViewProductos_CellContentClick;
             // 
             // label3
             // 
@@ -215,13 +232,13 @@
             label3.TabIndex = 6;
             label3.Text = "Observaciones";
             // 
-            // textBox1
+            // txtObservaciones
             // 
-            textBox1.Location = new Point(13, 81);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(757, 122);
-            textBox1.TabIndex = 5;
+            txtObservaciones.Location = new Point(13, 81);
+            txtObservaciones.Multiline = true;
+            txtObservaciones.Name = "txtObservaciones";
+            txtObservaciones.Size = new Size(757, 122);
+            txtObservaciones.TabIndex = 5;
             // 
             // groupBox2
             // 
@@ -259,7 +276,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(353, 28);
+            label2.Location = new Point(353, 25);
             label2.Name = "label2";
             label2.Size = new Size(108, 15);
             label2.TabIndex = 3;
@@ -290,6 +307,7 @@
             btnNuevoRq.TabIndex = 1;
             btnNuevoRq.Text = "Nuevo";
             btnNuevoRq.UseVisualStyleBackColor = true;
+            btnNuevoRq.Click += btnNuevoRq_Click;
             // 
             // btnModificarRq
             // 
@@ -299,6 +317,22 @@
             btnModificarRq.TabIndex = 2;
             btnModificarRq.Text = "Modificar";
             btnModificarRq.UseVisualStyleBackColor = true;
+            btnModificarRq.Click += btnModificarRq_Click;
+            // 
+            // CodigoProducto
+            // 
+            CodigoProducto.HeaderText = "Codigo Producto";
+            CodigoProducto.Name = "CodigoProducto";
+            // 
+            // producto
+            // 
+            producto.HeaderText = "Producto";
+            producto.Name = "producto";
+            // 
+            // Cantidad
+            // 
+            Cantidad.HeaderText = "Cantidad";
+            Cantidad.Name = "Cantidad";
             // 
             // RequerimientoForm
             // 
@@ -307,16 +341,15 @@
             ClientSize = new Size(800, 543);
             Controls.Add(btnModificarRq);
             Controls.Add(btnNuevoRq);
-            Controls.Add(groupBox1);
+            Controls.Add(groupBoxRequerimiento);
             Name = "RequerimientoForm";
             Text = "RequerimientoForm";
             Load += RequerimientoForm_Load;
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            groupBoxRequerimiento.ResumeLayout(false);
+            groupBoxRequerimiento.PerformLayout();
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownCant).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericCantidad).EndInit();
             groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewProductos).EndInit();
             groupBox2.ResumeLayout(false);
@@ -326,18 +359,18 @@
 
         #endregion
 
-        private GroupBox groupBox1;
+        private GroupBox groupBoxRequerimiento;
         private Label label2;
         private Label label1;
         private ComboBox comboBoxUsers;
         private Button btnNuevoRq;
         private GroupBox groupBox3;
         private Label label3;
-        private TextBox textBox1;
+        private TextBox txtObservaciones;
         private GroupBox groupBox2;
         private GroupBox groupBox4;
         private Label label4;
-        private NumericUpDown numericUpDownCant;
+        private NumericUpDown numericCantidad;
         private ComboBox comboBoxSelecProd;
         private Label label5;
         private RadioButton rbtnAlta;
@@ -348,8 +381,11 @@
         private Button btnAgregar;
         private Button btnModificarRq;
         private DataGridView dataGridViewProductos;
-        private NumericUpDown numericUpDown1;
-        private DataGridViewTextBoxColumn ColumnaProd;
-        private DataGridViewTextBoxColumn ColumnaCant;
+        private DateTimePicker dtpFechaSolicitud;
+        private Label LabelFecha;
+        private TextBox txtNroRequerimiento;
+        private DataGridViewTextBoxColumn CodigoProducto;
+        private DataGridViewTextBoxColumn producto;
+        private DataGridViewTextBoxColumn Cantidad;
     }
 }

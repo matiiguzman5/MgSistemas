@@ -33,12 +33,12 @@
             verInventarioToolStripMenuItem1 = new ToolStripMenuItem();
             generarRequerimientoToolStripMenuItem = new ToolStripMenuItem();
             verRQPendientesToolStripMenuItem = new ToolStripMenuItem();
+            inventarioToolStripMenuItem = new ToolStripMenuItem();
             usuariosToolStripMenuItem = new ToolStripMenuItem();
             btnGestionUsuarios = new ToolStripMenuItem();
             salirToolStripMenuItem = new ToolStripMenuItem();
             desloguearseToolStripMenuItem = new ToolStripMenuItem();
             btnSalir = new ToolStripMenuItem();
-            inventarioToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -78,6 +78,13 @@
             verRQPendientesToolStripMenuItem.Name = "verRQPendientesToolStripMenuItem";
             verRQPendientesToolStripMenuItem.Size = new Size(196, 22);
             verRQPendientesToolStripMenuItem.Text = "Ver RQ pendientes";
+            verRQPendientesToolStripMenuItem.Click += verRQPendientesToolStripMenuItem_Click;
+            // 
+            // inventarioToolStripMenuItem
+            // 
+            inventarioToolStripMenuItem.Name = "inventarioToolStripMenuItem";
+            inventarioToolStripMenuItem.Size = new Size(196, 22);
+            inventarioToolStripMenuItem.Text = "Inventario";
             // 
             // usuariosToolStripMenuItem
             // 
@@ -104,22 +111,16 @@
             // desloguearseToolStripMenuItem
             // 
             desloguearseToolStripMenuItem.Name = "desloguearseToolStripMenuItem";
-            desloguearseToolStripMenuItem.Size = new Size(180, 22);
+            desloguearseToolStripMenuItem.Size = new Size(165, 22);
             desloguearseToolStripMenuItem.Text = "Desloguearse";
             desloguearseToolStripMenuItem.Click += desloguearseToolStripMenuItem_Click;
             // 
             // btnSalir
             // 
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(180, 22);
+            btnSalir.Size = new Size(165, 22);
             btnSalir.Text = "Cerrar Aplicacion";
             btnSalir.Click += btnSalir_Click;
-            // 
-            // inventarioToolStripMenuItem
-            // 
-            inventarioToolStripMenuItem.Name = "inventarioToolStripMenuItem";
-            inventarioToolStripMenuItem.Size = new Size(196, 22);
-            inventarioToolStripMenuItem.Text = "Inventario";
             // 
             // MainForm
             // 
