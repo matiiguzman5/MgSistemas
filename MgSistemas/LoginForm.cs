@@ -63,6 +63,60 @@ namespace MgSistemas
                 return builder.ToString();
             }
         }
+
+        private void txtuser_Enter(object sender, EventArgs e)
+        {
+            if (txtNombreUsuario.Text == "Usuario")
+            {
+                txtNombreUsuario.Text = "";
+                txtNombreUsuario.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtuser_Leave(object sender, EventArgs e)
+        {
+            if (txtNombreUsuario.Text == "")
+            {
+                txtNombreUsuario.Text = "Usuario";
+                txtNombreUsuario.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtpass_Enter(object sender, EventArgs e)
+        {
+            if (txtContraseña.Text == "Contraseña")
+            {
+                txtContraseña.Text = "";
+                txtContraseña.ForeColor = Color.Black;
+                txtContraseña.PasswordChar = '*';
+            }
+        }
+
+        private void txtpass_Leave(object sender, EventArgs e)
+        {
+            if (txtContraseña.Text == "")
+            {
+                txtContraseña.Text = "Contraseña";
+                txtContraseña.ForeColor = Color.Black;
+
+            }
+        }
+
+        private void txtContraseña_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnIniciarSesion_Click(sender, e);  // Llama al método del botón
+            }
+        }
+
+        private void txtNombreUsuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnIniciarSesion_Click(sender, e);  // Llama al método del botón
+            }
+        }
     }
 
 }
