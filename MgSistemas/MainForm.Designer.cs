@@ -33,6 +33,10 @@
             verInventarioToolStripMenuItem1 = new ToolStripMenuItem();
             generarRequerimientoToolStripMenuItem = new ToolStripMenuItem();
             verRQPendientesToolStripMenuItem = new ToolStripMenuItem();
+
+
+            inventarioToolStripMenuItem = new ToolStripMenuItem();
+
             usuariosToolStripMenuItem = new ToolStripMenuItem();
             btnGestionUsuarios = new ToolStripMenuItem();
             salirToolStripMenuItem = new ToolStripMenuItem();
@@ -56,8 +60,12 @@
             // 
             // verInventarioToolStripMenuItem
             // 
+
             verInventarioToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { verInventarioToolStripMenuItem1, generarRequerimientoToolStripMenuItem, verRQPendientesToolStripMenuItem });
             verInventarioToolStripMenuItem.ForeColor = Color.Black;
+
+            verInventarioToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { verInventarioToolStripMenuItem1, generarRequerimientoToolStripMenuItem, verRQPendientesToolStripMenuItem, inventarioToolStripMenuItem });
+
             verInventarioToolStripMenuItem.Name = "verInventarioToolStripMenuItem";
             verInventarioToolStripMenuItem.Size = new Size(72, 20);
             verInventarioToolStripMenuItem.Text = "Inventario";
@@ -77,6 +85,20 @@
             generarRequerimientoToolStripMenuItem.Name = "generarRequerimientoToolStripMenuItem";
             generarRequerimientoToolStripMenuItem.Size = new Size(196, 22);
             generarRequerimientoToolStripMenuItem.Text = "Generar Requerimiento";
+            generarRequerimientoToolStripMenuItem.Click += generarRequerimientoToolStripMenuItem_Click;
+            // 
+            // verRQPendientesToolStripMenuItem
+            // 
+            verRQPendientesToolStripMenuItem.Name = "verRQPendientesToolStripMenuItem";
+            verRQPendientesToolStripMenuItem.Size = new Size(196, 22);
+            verRQPendientesToolStripMenuItem.Text = "Ver RQ pendientes";
+            verRQPendientesToolStripMenuItem.Click += verRQPendientesToolStripMenuItem_Click;
+            // 
+            // inventarioToolStripMenuItem
+            // 
+            inventarioToolStripMenuItem.Name = "inventarioToolStripMenuItem";
+            inventarioToolStripMenuItem.Size = new Size(196, 22);
+            inventarioToolStripMenuItem.Text = "Inventario";
             // 
             // verRQPendientesToolStripMenuItem
             // 
@@ -152,5 +174,6 @@
         private ToolStripMenuItem desloguearseToolStripMenuItem;
         private ToolStripMenuItem btnSalir;
         private ToolStripMenuItem verRQPendientesToolStripMenuItem;
+        private ToolStripMenuItem inventarioToolStripMenuItem;
     }
 }

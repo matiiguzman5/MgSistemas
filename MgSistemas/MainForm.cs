@@ -73,5 +73,18 @@ namespace MgSistemas
                 this.Close();
             }
         }
+
+        private void generarRequerimientoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var RequerimientoForm = new RequerimientoForm();
+            RequerimientoForm.Show();
+        }
+
+        private void verRQPendientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var VerRequerimientosPendientesForm = new VerRequerimientosPendientesForm();
+            VerRequerimientosPendientesForm.Show();
+            
+        }
     }
 }

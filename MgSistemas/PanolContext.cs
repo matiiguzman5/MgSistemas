@@ -19,6 +19,10 @@ namespace MgSistemas
 
         public DbSet<Usuario> Usuarios { get; set; }
 
+        public DbSet<Requerimiento> Requerimientos{ get; set; }
+
+        public DbSet<ProductoRequerido> ProductosRequeridos { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=(local);Database=MgSistemasDb;Integrated Security=True;TrustServerCertificate=True;");
@@ -72,6 +76,45 @@ namespace MgSistemas
 
             public Producto Producto { get; set; }
         }
+
+        public class Requerimiento
+        {
+            [Key]
+            public int IdRequerimiento { get; set; }
+
+            public int NroRequerimiento { get; set; }
+            public string Responsable { get; set; }
+
+            public DateTime FechaSolicitud { get; set; }
+
+            public string Observaciones { get; set; }
+
+            public string Prioridad { get; set; }
+
+            public DateTime FechaEntrega { get; set; }
+
+            public ICollection<ProductoRequerido> Productos { get; set; }
+        }
+
+        public class ProductoRequerido
+        {
+            [Key]
+            public int IdProductoRequerido { get; set; }
+
+            public int Cantidad { get; set; }
+
+            [ForeignKey("Requerimiento")]
+            public int IdRequerimiento { get; set; }
+
+            public Requerimiento Requerimiento { get; set; }
+
+            [ForeignKey("Producto")]
+            public int IdProducto { get; set; }
+
+            public Producto Producto { get; set; }
+        }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Movimiento>()
