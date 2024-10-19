@@ -113,6 +113,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(800, 450);
             Controls.Add(numericCantidad);
             Controls.Add(btnVolver);
@@ -122,8 +123,11 @@
             Controls.Add(dtpFechaMovimiento);
             Controls.Add(txtDetalles);
             Controls.Add(label1);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "MovimientoForm";
-            Text = "MovimientoForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Movimiento de Stock";
             ((System.ComponentModel.ISupportInitialize)numericCantidad).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -101,6 +101,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.FromArgb(237, 242, 244);
             ClientSize = new Size(764, 291);
             Controls.Add(panel1);
@@ -108,7 +109,9 @@
             Controls.Add(txtContraseña);
             Controls.Add(txtNombreUsuario);
             Controls.Add(label3);
+            MaximizeBox = false;
             Name = "LoginForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "LoginForm";
             ResumeLayout(false);
             PerformLayout();

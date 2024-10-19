@@ -25,7 +25,7 @@ namespace MgSistemas
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(local);Database=MgSistemasDb;Integrated Security=True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Server=(localdb)\\MgSistemas;Database=MgSistemasDb;Integrated Security=True;TrustServerCertificate=True;");
 
         }
                

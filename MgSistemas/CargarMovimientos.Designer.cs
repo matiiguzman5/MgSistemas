@@ -36,10 +36,14 @@
             // 
             // dataGridViewMovimientos
             // 
+            dataGridViewMovimientos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridViewMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewMovimientos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewMovimientos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewMovimientos.Location = new Point(12, 48);
             dataGridViewMovimientos.Name = "dataGridViewMovimientos";
-            dataGridViewMovimientos.Size = new Size(776, 367);
+            dataGridViewMovimientos.RowHeadersVisible = false;
+            dataGridViewMovimientos.Size = new Size(1013, 367);
             dataGridViewMovimientos.TabIndex = 0;
             dataGridViewMovimientos.CellContentClick += dataGridViewMovimientos_CellContentClick;
             // 
@@ -47,7 +51,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(306, -2);
+            label1.Location = new Point(428, 8);
             label1.Name = "label1";
             label1.Size = new Size(187, 37);
             label1.TabIndex = 1;
@@ -55,7 +59,7 @@
             // 
             // btnVolver
             // 
-            btnVolver.Location = new Point(656, 421);
+            btnVolver.Location = new Point(934, 421);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(75, 23);
             btnVolver.TabIndex = 2;
@@ -67,11 +71,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            ClientSize = new Size(1037, 450);
             Controls.Add(btnVolver);
             Controls.Add(label1);
             Controls.Add(dataGridViewMovimientos);
             Name = "CargarMovimientos";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "CargarMovientos";
             Load += CargarMovimientos_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewMovimientos).EndInit();

@@ -33,10 +33,6 @@
             verInventarioToolStripMenuItem1 = new ToolStripMenuItem();
             generarRequerimientoToolStripMenuItem = new ToolStripMenuItem();
             verRQPendientesToolStripMenuItem = new ToolStripMenuItem();
-
-
-            inventarioToolStripMenuItem = new ToolStripMenuItem();
-
             usuariosToolStripMenuItem = new ToolStripMenuItem();
             btnGestionUsuarios = new ToolStripMenuItem();
             salirToolStripMenuItem = new ToolStripMenuItem();
@@ -60,14 +56,10 @@
             // 
             // verInventarioToolStripMenuItem
             // 
-
             verInventarioToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { verInventarioToolStripMenuItem1, generarRequerimientoToolStripMenuItem, verRQPendientesToolStripMenuItem });
             verInventarioToolStripMenuItem.ForeColor = Color.Black;
-
-            verInventarioToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { verInventarioToolStripMenuItem1, generarRequerimientoToolStripMenuItem, verRQPendientesToolStripMenuItem, inventarioToolStripMenuItem });
-
             verInventarioToolStripMenuItem.Name = "verInventarioToolStripMenuItem";
-            verInventarioToolStripMenuItem.Size = new Size(72, 20);
+            verInventarioToolStripMenuItem.Size = new Size(65, 19);
             verInventarioToolStripMenuItem.Text = "Inventario";
             verInventarioToolStripMenuItem.Click += verInventarioToolStripMenuItem_Click;
             // 
@@ -89,30 +81,18 @@
             // 
             // verRQPendientesToolStripMenuItem
             // 
-            verRQPendientesToolStripMenuItem.Name = "verRQPendientesToolStripMenuItem";
-            verRQPendientesToolStripMenuItem.Size = new Size(196, 22);
-            verRQPendientesToolStripMenuItem.Text = "Ver RQ pendientes";
-            verRQPendientesToolStripMenuItem.Click += verRQPendientesToolStripMenuItem_Click;
-            // 
-            // inventarioToolStripMenuItem
-            // 
-            inventarioToolStripMenuItem.Name = "inventarioToolStripMenuItem";
-            inventarioToolStripMenuItem.Size = new Size(196, 22);
-            inventarioToolStripMenuItem.Text = "Inventario";
-            // 
-            // verRQPendientesToolStripMenuItem
-            // 
             verRQPendientesToolStripMenuItem.BackColor = Color.FromArgb(239, 35, 60);
             verRQPendientesToolStripMenuItem.Name = "verRQPendientesToolStripMenuItem";
             verRQPendientesToolStripMenuItem.Size = new Size(196, 22);
             verRQPendientesToolStripMenuItem.Text = "Ver RQ pendientes";
+            verRQPendientesToolStripMenuItem.Click += verRQPendientesToolStripMenuItem_Click;
             // 
             // usuariosToolStripMenuItem
             // 
             usuariosToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
             usuariosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { btnGestionUsuarios });
             usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            usuariosToolStripMenuItem.Size = new Size(64, 20);
+            usuariosToolStripMenuItem.Size = new Size(65, 19);
             usuariosToolStripMenuItem.Text = "Usuarios";
             // 
             // btnGestionUsuarios
@@ -127,7 +107,7 @@
             // 
             salirToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { desloguearseToolStripMenuItem, btnSalir });
             salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            salirToolStripMenuItem.Size = new Size(41, 20);
+            salirToolStripMenuItem.Size = new Size(65, 19);
             salirToolStripMenuItem.Text = "Salir";
             salirToolStripMenuItem.Click += salirToolStripMenuItem_Click;
             // 
@@ -135,7 +115,7 @@
             // 
             desloguearseToolStripMenuItem.BackColor = Color.FromArgb(239, 35, 60);
             desloguearseToolStripMenuItem.Name = "desloguearseToolStripMenuItem";
-            desloguearseToolStripMenuItem.Size = new Size(180, 22);
+            desloguearseToolStripMenuItem.Size = new Size(165, 22);
             desloguearseToolStripMenuItem.Text = "Desloguearse";
             desloguearseToolStripMenuItem.Click += desloguearseToolStripMenuItem_Click;
             // 
@@ -143,7 +123,7 @@
             // 
             btnSalir.BackColor = Color.FromArgb(239, 35, 60);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(180, 22);
+            btnSalir.Size = new Size(165, 22);
             btnSalir.Text = "Cerrar Aplicacion";
             btnSalir.Click += btnSalir_Click;
             // 
@@ -151,11 +131,15 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(800, 450);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "MainForm";
-            Text = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Inicio";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -174,6 +158,5 @@
         private ToolStripMenuItem desloguearseToolStripMenuItem;
         private ToolStripMenuItem btnSalir;
         private ToolStripMenuItem verRQPendientesToolStripMenuItem;
-        private ToolStripMenuItem inventarioToolStripMenuItem;
     }
 }

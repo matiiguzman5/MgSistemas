@@ -32,8 +32,6 @@
             LabelFecha = new Label();
             dtpFechaSolicitud = new DateTimePicker();
             txtNroRequerimiento = new TextBox();
-            btnCancelar = new Button();
-            btnAceptar = new Button();
             groupBox4 = new GroupBox();
             btnEliminar = new Button();
             btnAgregar = new Button();
@@ -43,6 +41,9 @@
             comboBoxSelecProd = new ComboBox();
             groupBox3 = new GroupBox();
             dataGridViewProductos = new DataGridView();
+            CodigoProducto = new DataGridViewTextBoxColumn();
+            producto = new DataGridViewTextBoxColumn();
+            Cantidad = new DataGridViewTextBoxColumn();
             label3 = new Label();
             txtObservaciones = new TextBox();
             groupBox2 = new GroupBox();
@@ -51,11 +52,9 @@
             label2 = new Label();
             label1 = new Label();
             comboBoxUsers = new ComboBox();
+            btnAceptar = new Button();
+            btnCancelar = new Button();
             btnNuevoRq = new Button();
-            btnModificarRq = new Button();
-            CodigoProducto = new DataGridViewTextBoxColumn();
-            producto = new DataGridViewTextBoxColumn();
-            Cantidad = new DataGridViewTextBoxColumn();
             groupBoxRequerimiento.SuspendLayout();
             groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericCantidad).BeginInit();
@@ -69,8 +68,6 @@
             groupBoxRequerimiento.Controls.Add(LabelFecha);
             groupBoxRequerimiento.Controls.Add(dtpFechaSolicitud);
             groupBoxRequerimiento.Controls.Add(txtNroRequerimiento);
-            groupBoxRequerimiento.Controls.Add(btnCancelar);
-            groupBoxRequerimiento.Controls.Add(btnAceptar);
             groupBoxRequerimiento.Controls.Add(groupBox4);
             groupBoxRequerimiento.Controls.Add(groupBox3);
             groupBoxRequerimiento.Controls.Add(label3);
@@ -81,7 +78,7 @@
             groupBoxRequerimiento.Controls.Add(comboBoxUsers);
             groupBoxRequerimiento.Location = new Point(12, 36);
             groupBoxRequerimiento.Name = "groupBoxRequerimiento";
-            groupBoxRequerimiento.Size = new Size(776, 495);
+            groupBoxRequerimiento.Size = new Size(776, 475);
             groupBoxRequerimiento.TabIndex = 0;
             groupBoxRequerimiento.TabStop = false;
             groupBoxRequerimiento.Text = "Requerimiento";
@@ -90,7 +87,7 @@
             // LabelFecha
             // 
             LabelFecha.AutoSize = true;
-            LabelFecha.Location = new Point(311, 58);
+            LabelFecha.Location = new Point(331, 25);
             LabelFecha.Name = "LabelFecha";
             LabelFecha.Size = new Size(50, 15);
             LabelFecha.TabIndex = 14;
@@ -99,7 +96,7 @@
             // dtpFechaSolicitud
             // 
             dtpFechaSolicitud.Format = DateTimePickerFormat.Custom;
-            dtpFechaSolicitud.Location = new Point(368, 55);
+            dtpFechaSolicitud.Location = new Point(388, 22);
             dtpFechaSolicitud.Name = "dtpFechaSolicitud";
             dtpFechaSolicitud.RightToLeft = RightToLeft.No;
             dtpFechaSolicitud.Size = new Size(200, 23);
@@ -113,25 +110,7 @@
             txtNroRequerimiento.Name = "txtNroRequerimiento";
             txtNroRequerimiento.Size = new Size(100, 23);
             txtNroRequerimiento.TabIndex = 12;
-            // 
-            // btnCancelar
-            // 
-            btnCancelar.Location = new Point(485, 467);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(75, 23);
-            btnCancelar.TabIndex = 10;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = true;
-            // 
-            // btnAceptar
-            // 
-            btnAceptar.Location = new Point(232, 466);
-            btnAceptar.Name = "btnAceptar";
-            btnAceptar.Size = new Size(75, 23);
-            btnAceptar.TabIndex = 9;
-            btnAceptar.Text = "Aceptar";
-            btnAceptar.UseVisualStyleBackColor = true;
-            btnAceptar.Click += btnAceptar_Click;
+            txtNroRequerimiento.Visible = false;
             // 
             // groupBox4
             // 
@@ -214,14 +193,35 @@
             // 
             // dataGridViewProductos
             // 
-            dataGridViewProductos.BackgroundColor = SystemColors.ButtonHighlight;
+            dataGridViewProductos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridViewProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewProductos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewProductos.BackgroundColor = SystemColors.ControlLightLight;
             dataGridViewProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewProductos.Columns.AddRange(new DataGridViewColumn[] { CodigoProducto, producto, Cantidad });
+            dataGridViewProductos.EditMode = DataGridViewEditMode.EditOnF2;
             dataGridViewProductos.Location = new Point(11, 21);
             dataGridViewProductos.Name = "dataGridViewProductos";
+            dataGridViewProductos.RowHeadersVisible = false;
+            dataGridViewProductos.RowHeadersWidth = 30;
             dataGridViewProductos.Size = new Size(734, 129);
             dataGridViewProductos.TabIndex = 0;
             dataGridViewProductos.CellContentClick += dataGridViewProductos_CellContentClick;
+            // 
+            // CodigoProducto
+            // 
+            CodigoProducto.HeaderText = "Codigo Producto";
+            CodigoProducto.Name = "CodigoProducto";
+            // 
+            // producto
+            // 
+            producto.HeaderText = "Producto";
+            producto.Name = "producto";
+            // 
+            // Cantidad
+            // 
+            Cantidad.HeaderText = "Cantidad";
+            Cantidad.Name = "Cantidad";
             // 
             // label3
             // 
@@ -281,6 +281,7 @@
             label2.Size = new Size(108, 15);
             label2.TabIndex = 3;
             label2.Text = "Nro Requerimiento";
+            label2.Visible = false;
             // 
             // label1
             // 
@@ -298,6 +299,27 @@
             comboBoxUsers.Name = "comboBoxUsers";
             comboBoxUsers.Size = new Size(221, 23);
             comboBoxUsers.TabIndex = 0;
+            comboBoxUsers.SelectedIndexChanged += comboBoxUsers_SelectedIndexChanged;
+            // 
+            // btnAceptar
+            // 
+            btnAceptar.Location = new Point(217, 517);
+            btnAceptar.Name = "btnAceptar";
+            btnAceptar.Size = new Size(75, 23);
+            btnAceptar.TabIndex = 11;
+            btnAceptar.Text = "Aceptar";
+            btnAceptar.UseVisualStyleBackColor = true;
+            btnAceptar.Click += btnAceptar_Click;
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.Location = new Point(516, 517);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(75, 23);
+            btnCancelar.TabIndex = 12;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnNuevoRq
             // 
@@ -309,41 +331,21 @@
             btnNuevoRq.UseVisualStyleBackColor = true;
             btnNuevoRq.Click += btnNuevoRq_Click;
             // 
-            // btnModificarRq
-            // 
-            btnModificarRq.Location = new Point(121, 7);
-            btnModificarRq.Name = "btnModificarRq";
-            btnModificarRq.Size = new Size(83, 23);
-            btnModificarRq.TabIndex = 2;
-            btnModificarRq.Text = "Modificar";
-            btnModificarRq.UseVisualStyleBackColor = true;
-            btnModificarRq.Click += btnModificarRq_Click;
-            // 
-            // CodigoProducto
-            // 
-            CodigoProducto.HeaderText = "Codigo Producto";
-            CodigoProducto.Name = "CodigoProducto";
-            // 
-            // producto
-            // 
-            producto.HeaderText = "Producto";
-            producto.Name = "producto";
-            // 
-            // Cantidad
-            // 
-            Cantidad.HeaderText = "Cantidad";
-            Cantidad.Name = "Cantidad";
-            // 
             // RequerimientoForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 543);
-            Controls.Add(btnModificarRq);
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            ClientSize = new Size(800, 549);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnAceptar);
             Controls.Add(btnNuevoRq);
             Controls.Add(groupBoxRequerimiento);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "RequerimientoForm";
-            Text = "RequerimientoForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Crear Requerimiento";
             Load += RequerimientoForm_Load;
             groupBoxRequerimiento.ResumeLayout(false);
             groupBoxRequerimiento.PerformLayout();
@@ -375,17 +377,16 @@
         private Label label5;
         private RadioButton rbtnAlta;
         private RadioButton rbtnNormal;
-        private Button btnCancelar;
-        private Button btnAceptar;
         private Button btnEliminar;
         private Button btnAgregar;
-        private Button btnModificarRq;
-        private DataGridView dataGridViewProductos;
         private DateTimePicker dtpFechaSolicitud;
         private Label LabelFecha;
         private TextBox txtNroRequerimiento;
         private DataGridViewTextBoxColumn CodigoProducto;
         private DataGridViewTextBoxColumn producto;
         private DataGridViewTextBoxColumn Cantidad;
+        private Button btnCancelar;
+        private Button btnAceptar;
+        protected DataGridView dataGridViewProductos;
     }
 }

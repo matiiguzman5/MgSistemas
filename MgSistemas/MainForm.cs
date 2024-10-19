@@ -76,15 +76,16 @@ namespace MgSistemas
 
         private void generarRequerimientoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var RequerimientoForm = new RequerimientoForm();
+            var RequerimientoForm = new RequerimientoForm(_usuarioActual);
             RequerimientoForm.Show();
+            this.Close();
         }
 
         private void verRQPendientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var VerRequerimientosPendientesForm = new VerRequerimientosPendientesForm();
+            var VerRequerimientosPendientesForm = new VerRequerimientosPendientesForm(_usuarioActual);
             VerRequerimientosPendientesForm.Show();
-            
+            this.Close();
         }
     }
 }

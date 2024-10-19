@@ -187,6 +187,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(800, 450);
             Controls.Add(CategoriaBox);
             Controls.Add(label7);
@@ -203,8 +204,11 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "AgregarProductoForm";
-            Text = "AgregarProductoForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Agregar Producto";
             ((System.ComponentModel.ISupportInitialize)numericCantProd).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericCodeProd).EndInit();
             ResumeLayout(false);

@@ -95,7 +95,6 @@
             numericCantProd.Name = "numericCantProd";
             numericCantProd.Size = new Size(120, 23);
             numericCantProd.TabIndex = 24;
-           
             // 
             // txtNombreProducto
             // 
@@ -155,6 +154,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(800, 450);
             Controls.Add(btnGuardarCambios);
             Controls.Add(label5);
@@ -168,8 +168,10 @@
             Controls.Add(label4);
             Controls.Add(label2);
             Controls.Add(label1);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "EdicionForm";
-            Text = "EdicionForm";
+            Text = "Editar";
             ((System.ComponentModel.ISupportInitialize)numericCodeProd).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericCantProd).EndInit();
             ResumeLayout(false);

@@ -41,9 +41,11 @@
             // 
             DataGridViewUsuarios.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             DataGridViewUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DataGridViewUsuarios.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             DataGridViewUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataGridViewUsuarios.Location = new Point(12, 46);
             DataGridViewUsuarios.Name = "DataGridViewUsuarios";
+            DataGridViewUsuarios.RowHeadersVisible = false;
             DataGridViewUsuarios.Size = new Size(776, 352);
             DataGridViewUsuarios.TabIndex = 0;
             DataGridViewUsuarios.CellContentClick += dataGridView1_CellContentClick;
@@ -101,6 +103,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(800, 450);
             Controls.Add(btnVolver1);
             Controls.Add(EliminarUsuario);
@@ -108,7 +111,10 @@
             Controls.Add(btnAgregarUsuario);
             Controls.Add(label1);
             Controls.Add(DataGridViewUsuarios);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "GestionUsuariosForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "GestionUsuariosForm";
             Load += GestionUsuariosForm_Load;
             ((System.ComponentModel.ISupportInitialize)DataGridViewUsuarios).EndInit();

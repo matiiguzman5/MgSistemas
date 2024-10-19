@@ -146,6 +146,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(800, 450);
             Controls.Add(btnVolver);
             Controls.Add(btnAgregarUsuario);
@@ -159,7 +160,8 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "AgregarUsuarioForm";
-            Text = "AgregarUsuarioForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Agregar Usuario ";
             ResumeLayout(false);
             PerformLayout();
         }

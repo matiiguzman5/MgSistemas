@@ -55,10 +55,12 @@
             // 
             dataGridViewProductos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewProductos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewProductos.Location = new Point(12, 45);
             dataGridViewProductos.Name = "dataGridViewProductos";
-            dataGridViewProductos.Size = new Size(776, 365);
+            dataGridViewProductos.RowHeadersVisible = false;
+            dataGridViewProductos.Size = new Size(937, 365);
             dataGridViewProductos.TabIndex = 0;
             dataGridViewProductos.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -66,13 +68,13 @@
             // 
             txtBuscar.Location = new Point(12, 16);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(188, 23);
+            txtBuscar.Size = new Size(249, 23);
             txtBuscar.TabIndex = 1;
             txtBuscar.TextChanged += textBox2_TextChanged;
             // 
             // btnBuscar
             // 
-            btnBuscar.Location = new Point(206, 16);
+            btnBuscar.Location = new Point(267, 15);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(59, 23);
             btnBuscar.TabIndex = 2;
@@ -83,17 +85,17 @@
             // InventarioLbl
             // 
             InventarioLbl.AutoSize = true;
-            InventarioLbl.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            InventarioLbl.Location = new Point(297, 9);
+            InventarioLbl.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            InventarioLbl.Location = new Point(373, 8);
             InventarioLbl.Name = "InventarioLbl";
-            InventarioLbl.Size = new Size(89, 21);
+            InventarioLbl.Size = new Size(114, 30);
             InventarioLbl.TabIndex = 3;
             InventarioLbl.Text = "Inventario";
             // 
             // btnAgregar
             // 
             btnAgregar.AutoSize = true;
-            btnAgregar.Location = new Point(419, 15);
+            btnAgregar.Location = new Point(542, 16);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(119, 25);
             btnAgregar.TabIndex = 4;
@@ -104,7 +106,7 @@
             // btnEliminar
             // 
             btnEliminar.AutoSize = true;
-            btnEliminar.Location = new Point(544, 16);
+            btnEliminar.Location = new Point(667, 17);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(119, 25);
             btnEliminar.TabIndex = 5;
@@ -115,7 +117,7 @@
             // btnEditar
             // 
             btnEditar.AutoSize = true;
-            btnEditar.Location = new Point(669, 15);
+            btnEditar.Location = new Point(792, 16);
             btnEditar.Name = "btnEditar";
             btnEditar.Size = new Size(119, 25);
             btnEditar.TabIndex = 6;
@@ -125,7 +127,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(669, 416);
+            button2.Location = new Point(825, 416);
             button2.Name = "button2";
             button2.Size = new Size(119, 23);
             button2.TabIndex = 7;
@@ -151,7 +153,7 @@
             // 
             // btnRetirarProducto
             // 
-            btnRetirarProducto.Location = new Point(496, 416);
+            btnRetirarProducto.Location = new Point(652, 416);
             btnRetirarProducto.Name = "btnRetirarProducto";
             btnRetirarProducto.Size = new Size(126, 23);
             btnRetirarProducto.TabIndex = 8;
@@ -161,7 +163,7 @@
             // 
             // btnVerMovimientos
             // 
-            btnVerMovimientos.Location = new Point(56, 416);
+            btnVerMovimientos.Location = new Point(36, 416);
             btnVerMovimientos.Name = "btnVerMovimientos";
             btnVerMovimientos.Size = new Size(135, 23);
             btnVerMovimientos.TabIndex = 9;
@@ -173,7 +175,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            ClientSize = new Size(961, 450);
             Controls.Add(btnVerMovimientos);
             Controls.Add(btnRetirarProducto);
             Controls.Add(button2);
@@ -185,7 +188,8 @@
             Controls.Add(txtBuscar);
             Controls.Add(dataGridViewProductos);
             Name = "InventarioForm";
-            Text = "InventarioForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Inventario";
             Load += InventarioForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewProductos).EndInit();
             ((System.ComponentModel.ISupportInitialize)panolContextBindingSource).EndInit();
