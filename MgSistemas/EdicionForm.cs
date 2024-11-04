@@ -34,6 +34,7 @@ namespace MgSistemas
                     txtNombreProducto.Text = producto.Nombre;
                     txtDescripcion.Text = producto.Descripcion;
                     numericCantProd.Value = producto.StockActual;
+                    CategoriaBox.Text = producto.Categoria;
                 }
                 else
                 {
@@ -109,6 +110,14 @@ namespace MgSistemas
                     }
                 }
             }
+        }
+
+        //Ver ESTE BOTON QUE CUANDO SALGO SE DUPLICA EL INVENTARIO.
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            var volverInventario = new InventarioForm(_usuarioActual);
+            volverInventario.Show();
+            this.Close();
         }
     }
 }

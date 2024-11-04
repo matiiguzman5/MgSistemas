@@ -30,14 +30,36 @@ namespace MgSistemas
                 var producto = context.Productos.FirstOrDefault(p => p.IdProducto == _idProducto);
                 if (producto != null)
                 {
-                    producto.StockActual -= cantidad;
-
-                    if (producto.StockActual < 0)
+                    // Verificación si la cantidad solicitada es mayor al stock actual
+                    if (cantidad > producto.StockActual)
                     {
-                        MessageBox.Show("El stock no puede ser menor a 0.");
+                        MessageBox.Show("No hay suficiente stock disponible para realizar el retiro.", "Stock Insuficiente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
+                    int nuevoStock = producto.StockActual - cantidad;
+
+                    // Verificación de advertencia si el stock quedará en 0
+                    if (nuevoStock == 0)
+                    {
+                        var result = MessageBox.Show(
+                            "El movimiento dejará el stock en 0. ¿Estás seguro de realizar el retiro?",
+                            "Advertencia de Stock",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning
+                        );
+
+                        if (result == DialogResult.No)
+                        {
+                            // Cancelar el movimiento si el usuario selecciona "No"
+                            return;
+                        }
+                    }
+
+                    // Actualizar el stock del producto
+                    producto.StockActual = nuevoStock;
+
+                    // Crear el movimiento de salida
                     var movimiento = new Movimiento
                     {
                         IdProducto = _idProducto,
@@ -60,11 +82,9 @@ namespace MgSistemas
                 {
                     MessageBox.Show("Producto no encontrado.");
                 }
+
             }
-
-           
         }
-
         private void btnVolver_Click(object sender, EventArgs e)
         {
             var inventarioForm = new InventarioForm(_usuarioActual);
@@ -73,3 +93,5 @@ namespace MgSistemas
         }
     }
 }
+
+

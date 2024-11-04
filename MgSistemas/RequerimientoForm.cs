@@ -93,7 +93,7 @@ namespace MgSistemas
             btnAgregar.Enabled = true;
             btnEliminar.Enabled = true;
 
-            MessageBox.Show("Listo para crear un nuevo requerimiento.");
+            
         }
 
 
@@ -204,33 +204,110 @@ namespace MgSistemas
                         PdfWriter writer = PdfWriter.GetInstance(doc, fs);
                         doc.Open();
 
+                        // Fuentes
+                        var headerFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16);
+                        var subHeaderFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
+                        var normalFont = FontFactory.GetFont(FontFactory.HELVETICA, 10);
+                        var tableHeaderFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10);
 
-                        var titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18);
-                        doc.Add(new Paragraph($"Requerimiento N° {requerimiento.NroRequerimiento}", titleFont));
-                        doc.Add(new Paragraph(" "));
+                        // Encabezado del documento
+                        PdfPTable headerTable = new PdfPTable(2);
+                        headerTable.WidthPercentage = 100;
+                        headerTable.SetWidths(new float[] { 1, 1 });
 
+                        PdfPCell companyCell = new PdfPCell(new Phrase("Nombre de la Compañía", headerFont))
+                        {
+                            Border = 0,
+                            HorizontalAlignment = Element.ALIGN_LEFT
+                        };
+                        headerTable.AddCell(companyCell);
 
-                        var bodyFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
-                        doc.Add(new Paragraph($"Responsable: {requerimiento.Responsable}", bodyFont));
-                        doc.Add(new Paragraph($"Fecha de Entrega: {requerimiento.FechaEntrega.ToShortDateString()}", bodyFont));
-                        doc.Add(new Paragraph($"Prioridad: {requerimiento.Prioridad}", bodyFont));
-                        doc.Add(new Paragraph($"Observaciones: {requerimiento.Observaciones}", bodyFont));
-                        doc.Add(new Paragraph(" "));
+                        PdfPCell titleCell = new PdfPCell(new Phrase("ORDEN DE REQUERIMIENTO", headerFont))
+                        {
+                            Border = 0,
+                            HorizontalAlignment = Element.ALIGN_RIGHT
+                        };
+                        headerTable.AddCell(titleCell);
 
+                        doc.Add(headerTable);
+                        doc.Add(new Paragraph(" ")); 
 
-                        PdfPTable table = new PdfPTable(3);
-                        table.AddCell("Código Producto");
-                        table.AddCell("Producto");
-                        table.AddCell("Cantidad");
+                        // Información de la compañía
+                        PdfPTable companyInfoTable = new PdfPTable(1);
+                        companyInfoTable.WidthPercentage = 100;
+                        companyInfoTable.AddCell(new PdfPCell(new Phrase("Dirección: Calle Falsa 123, Ciudad", normalFont)) { Border = 0 });
+                        companyInfoTable.AddCell(new PdfPCell(new Phrase("Teléfono: 1234-5678 | Email: contacto@empresa.com", normalFont)) { Border = 0 });
+
+                        doc.Add(companyInfoTable);
+                        doc.Add(new Paragraph(" ")); // Espacio
+
+                        // Información del requerimiento
+                        PdfPTable requestInfoTable = new PdfPTable(2);
+                        requestInfoTable.WidthPercentage = 100;
+                        requestInfoTable.SetWidths(new float[] { 1, 3 });
+
+                        requestInfoTable.AddCell(new PdfPCell(new Phrase("N° Requerimiento:", subHeaderFont)) { Border = 0 });
+                        requestInfoTable.AddCell(new PdfPCell(new Phrase(requerimiento.NroRequerimiento.ToString(), normalFont)) { Border = 0 });
+
+                        requestInfoTable.AddCell(new PdfPCell(new Phrase("Responsable:", subHeaderFont)) { Border = 0 });
+                        requestInfoTable.AddCell(new PdfPCell(new Phrase(requerimiento.Responsable, normalFont)) { Border = 0 });
+
+                        requestInfoTable.AddCell(new PdfPCell(new Phrase("Fecha de Entrega:", subHeaderFont)) { Border = 0 });
+                        requestInfoTable.AddCell(new PdfPCell(new Phrase(requerimiento.FechaEntrega.ToShortDateString(), normalFont)) { Border = 0 });
+
+                        requestInfoTable.AddCell(new PdfPCell(new Phrase("Prioridad:", subHeaderFont)) { Border = 0 });
+                        requestInfoTable.AddCell(new PdfPCell(new Phrase(requerimiento.Prioridad, normalFont)) { Border = 0 });
+
+                        requestInfoTable.AddCell(new PdfPCell(new Phrase("Observaciones:", subHeaderFont)) { Border = 0 });
+                        requestInfoTable.AddCell(new PdfPCell(new Phrase(requerimiento.Observaciones, normalFont)) { Border = 0 });
+
+                        doc.Add(requestInfoTable);
+                        doc.Add(new Paragraph(" ")); 
+
+                        // Tabla de productos
+                        PdfPTable productTable = new PdfPTable(3);
+                        productTable.WidthPercentage = 100;
+                        productTable.SetWidths(new float[] { 1, 4, 1 });
+
+                        productTable.AddCell(new PdfPCell(new Phrase("Código Producto", tableHeaderFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
+                        productTable.AddCell(new PdfPCell(new Phrase("Descripción del Producto", tableHeaderFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
+                        productTable.AddCell(new PdfPCell(new Phrase("Cantidad", tableHeaderFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
 
                         foreach (var producto in requerimiento.Productos)
                         {
-                            table.AddCell(producto.IdProducto.ToString());
-                            table.AddCell(producto.Producto.Nombre);
-                            table.AddCell(producto.Cantidad.ToString());
+                            productTable.AddCell(new PdfPCell(new Phrase(producto.IdProducto.ToString(), normalFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
+                            productTable.AddCell(new PdfPCell(new Phrase(producto.Producto.Nombre, normalFont)) { HorizontalAlignment = Element.ALIGN_LEFT });
+                            productTable.AddCell(new PdfPCell(new Phrase(producto.Cantidad.ToString(), normalFont)) { HorizontalAlignment = Element.ALIGN_CENTER });
                         }
 
-                        doc.Add(table);
+                        doc.Add(productTable);
+
+                        
+                        doc.Add(new Paragraph(" "));
+
+                        PdfPTable signatureTable = new PdfPTable(2);
+                        signatureTable.WidthPercentage = 100;
+                        signatureTable.SetWidths(new float[] { 1, 1 });
+
+                        PdfPCell dateCell = new PdfPCell(new Phrase("Fecha: _________________________", normalFont))
+                        {
+                            Border = PdfPCell.NO_BORDER,
+                            HorizontalAlignment = Element.ALIGN_LEFT,
+                            PaddingTop = 500 
+                        };
+                        signatureTable.AddCell(dateCell);
+
+                        PdfPCell signatureCell = new PdfPCell(new Phrase("Firma Responsable: _________________________", normalFont))
+                        {
+                            Border = PdfPCell.NO_BORDER,
+                            HorizontalAlignment = Element.ALIGN_RIGHT,
+                            PaddingTop = 500 
+                        };
+                        signatureTable.AddCell(signatureCell);
+
+                        doc.Add(signatureTable);
+
+                        // Cerrar el documento
                         doc.Close();
                     }
 
@@ -240,9 +317,9 @@ namespace MgSistemas
                 {
                     MessageBox.Show($"Ocurrió un error al generar el PDF: {ex.Message}");
                 }
-
             }
         }
+
 
         private void dataGridViewProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

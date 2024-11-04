@@ -49,12 +49,10 @@
             // txtNombreUsuario
             // 
             txtNombreUsuario.BackColor = Color.White;
-            txtNombreUsuario.BorderStyle = BorderStyle.None;
             txtNombreUsuario.ForeColor = Color.FromArgb(43, 45, 66);
-            txtNombreUsuario.Location = new Point(308, 90);
-            txtNombreUsuario.Multiline = true;
+            txtNombreUsuario.Location = new Point(308, 99);
             txtNombreUsuario.Name = "txtNombreUsuario";
-            txtNombreUsuario.Size = new Size(408, 25);
+            txtNombreUsuario.Size = new Size(408, 23);
             txtNombreUsuario.TabIndex = 3;
             txtNombreUsuario.Text = "Usuario";
             txtNombreUsuario.Enter += txtuser_Enter;
@@ -63,12 +61,10 @@
             // txtContraseña
             // 
             txtContraseña.BackColor = Color.White;
-            txtContraseña.BorderStyle = BorderStyle.None;
             txtContraseña.ForeColor = Color.FromArgb(43, 45, 66);
-            txtContraseña.Location = new Point(308, 159);
-            txtContraseña.Multiline = true;
+            txtContraseña.Location = new Point(308, 154);
             txtContraseña.Name = "txtContraseña";
-            txtContraseña.Size = new Size(408, 25);
+            txtContraseña.Size = new Size(408, 23);
             txtContraseña.TabIndex = 4;
             txtContraseña.Text = "Contraseña";
             txtContraseña.Enter += txtpass_Enter;

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            dataGridViewProductos = new DataGridView();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             txtBuscar = new TextBox();
             btnBuscar = new Button();
             InventarioLbl = new Label();
@@ -44,37 +44,26 @@
             newReleaseDbBindingSource = new BindingSource(components);
             btnRetirarProducto = new Button();
             btnVerMovimientos = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewProductos).BeginInit();
+            dataGridViewProductos = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)panolContextBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)initialCreateBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)addCodigoProducto2BindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)newReleaseDbBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewProductos).BeginInit();
             SuspendLayout();
-            // 
-            // dataGridViewProductos
-            // 
-            dataGridViewProductos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridViewProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewProductos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewProductos.Location = new Point(12, 45);
-            dataGridViewProductos.Name = "dataGridViewProductos";
-            dataGridViewProductos.RowHeadersVisible = false;
-            dataGridViewProductos.Size = new Size(937, 365);
-            dataGridViewProductos.TabIndex = 0;
-            dataGridViewProductos.CellContentClick += dataGridView1_CellContentClick;
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(12, 16);
+            txtBuscar.Location = new Point(12, 8);
             txtBuscar.Name = "txtBuscar";
+            txtBuscar.PlaceholderText = "Buscar :";
             txtBuscar.Size = new Size(249, 23);
             txtBuscar.TabIndex = 1;
             txtBuscar.TextChanged += textBox2_TextChanged;
             // 
             // btnBuscar
             // 
-            btnBuscar.Location = new Point(267, 15);
+            btnBuscar.Location = new Point(267, 7);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(59, 23);
             btnBuscar.TabIndex = 2;
@@ -86,7 +75,7 @@
             // 
             InventarioLbl.AutoSize = true;
             InventarioLbl.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            InventarioLbl.Location = new Point(373, 8);
+            InventarioLbl.Location = new Point(403, 1);
             InventarioLbl.Name = "InventarioLbl";
             InventarioLbl.Size = new Size(114, 30);
             InventarioLbl.TabIndex = 3;
@@ -95,7 +84,7 @@
             // btnAgregar
             // 
             btnAgregar.AutoSize = true;
-            btnAgregar.Location = new Point(542, 16);
+            btnAgregar.Location = new Point(592, 8);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(119, 25);
             btnAgregar.TabIndex = 4;
@@ -106,7 +95,7 @@
             // btnEliminar
             // 
             btnEliminar.AutoSize = true;
-            btnEliminar.Location = new Point(667, 17);
+            btnEliminar.Location = new Point(805, 8);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(119, 25);
             btnEliminar.TabIndex = 5;
@@ -117,7 +106,7 @@
             // btnEditar
             // 
             btnEditar.AutoSize = true;
-            btnEditar.Location = new Point(792, 16);
+            btnEditar.Location = new Point(1028, 8);
             btnEditar.Name = "btnEditar";
             btnEditar.Size = new Size(119, 25);
             btnEditar.TabIndex = 6;
@@ -127,7 +116,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(825, 416);
+            button2.Location = new Point(1164, 610);
             button2.Name = "button2";
             button2.Size = new Size(119, 23);
             button2.TabIndex = 7;
@@ -153,9 +142,10 @@
             // 
             // btnRetirarProducto
             // 
-            btnRetirarProducto.Location = new Point(652, 416);
+            btnRetirarProducto.Font = new Font("Segoe UI", 14F);
+            btnRetirarProducto.Location = new Point(592, 605);
             btnRetirarProducto.Name = "btnRetirarProducto";
-            btnRetirarProducto.Size = new Size(126, 23);
+            btnRetirarProducto.Size = new Size(158, 33);
             btnRetirarProducto.TabIndex = 8;
             btnRetirarProducto.Text = "Retirar";
             btnRetirarProducto.UseVisualStyleBackColor = true;
@@ -163,7 +153,7 @@
             // 
             // btnVerMovimientos
             // 
-            btnVerMovimientos.Location = new Point(36, 416);
+            btnVerMovimientos.Location = new Point(25, 610);
             btnVerMovimientos.Name = "btnVerMovimientos";
             btnVerMovimientos.Size = new Size(135, 23);
             btnVerMovimientos.TabIndex = 9;
@@ -171,12 +161,29 @@
             btnVerMovimientos.UseVisualStyleBackColor = true;
             btnVerMovimientos.Click += btnVerMovimientos_Click;
             // 
+            // dataGridViewProductos
+            // 
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewProductos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewProductos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridViewProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewProductos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewProductos.EnableHeadersVisualStyles = false;
+            dataGridViewProductos.Location = new Point(12, 45);
+            dataGridViewProductos.Name = "dataGridViewProductos";
+            dataGridViewProductos.RowHeadersVisible = false;
+            dataGridViewProductos.RowTemplate.Height = 50;
+            dataGridViewProductos.Size = new Size(1281, 554);
+            dataGridViewProductos.TabIndex = 0;
+            dataGridViewProductos.CellContentClick += dataGridView1_CellContentClick;
+            // 
             // InventarioForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(961, 450);
+            ClientSize = new Size(1305, 645);
             Controls.Add(btnVerMovimientos);
             Controls.Add(btnRetirarProducto);
             Controls.Add(button2);
@@ -191,18 +198,16 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Inventario";
             Load += InventarioForm_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridViewProductos).EndInit();
             ((System.ComponentModel.ISupportInitialize)panolContextBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)initialCreateBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)addCodigoProducto2BindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)newReleaseDbBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewProductos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private DataGridView dataGridViewProductos;
         private TextBox txtBuscar;
         private Button btnBuscar;
         private Label InventarioLbl;
@@ -217,5 +222,12 @@
         private BindingSource addCodigoProducto2BindingSource;
         private Button btnRetirarProducto;
         private Button btnVerMovimientos;
+        private DataGridView dataGridViewProductos;
+        private Label label2;
+        private Label label1;
+        private TextBox textBoxCodeProd;
+        private Label label4;
+        private TextBox textBox2;
+        private Label label3;
     }
 }

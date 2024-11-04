@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
 using static MgSistemas.PanolContext;
 
 
@@ -34,6 +26,48 @@ namespace MgSistemas
         private void InventarioForm_Load(object sender, EventArgs e)
         {
             CargarProductos();
+
+
+
+            dataGridViewProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dataGridViewProductos.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dataGridViewProductos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewProductos.RowTemplate.Height = 35;
+
+            // Encabezado personalizado
+            dataGridViewProductos.EnableHeadersVisualStyles = false;
+            dataGridViewProductos.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
+            dataGridViewProductos.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridViewProductos.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold);
+            dataGridViewProductos.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Bordes y líneas de separación
+            dataGridViewProductos.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
+            dataGridViewProductos.GridColor = Color.Black; // Color de las líneas de separación
+
+            // Alternancia de color de filas
+            dataGridViewProductos.DefaultCellStyle.BackColor = Color.White;
+            dataGridViewProductos.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+
+            // Ocultar columna de selección
+            dataGridViewProductos.RowHeadersVisible = false;
+
+            // Configura la columna "Descripción" para que ocupe el espacio restante
+            if (dataGridViewProductos.Columns.Contains("Descripcion"))
+            {
+                dataGridViewProductos.Columns["Descripcion"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridViewProductos.Columns["Descripcion"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            }
+            else
+            {
+                MessageBox.Show("La columna 'Descripcion' no se encontró en el DataGridView.");
+            }
+
+            dataGridViewProductos.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
+            dataGridViewProductos.GridColor = Color.Black;
+            dataGridViewProductos.RowTemplate.Height = 90;
+
+            dataGridViewProductos.RowHeadersVisible = false;
         }
 
 
@@ -53,7 +87,7 @@ namespace MgSistemas
         {
 
         }
-      
+
         private void button2_Click(object sender, EventArgs e)
         {
             if (dataGridViewProductos.CurrentRow != null)
@@ -174,20 +208,25 @@ namespace MgSistemas
 
         private void btnVerMovimientos_Click(object sender, EventArgs e)
         {
-            
+
             if (dataGridViewProductos.CurrentRow != null)
             {
-                                
-                var cargarMovimientos= new CargarMovimientos( _usuarioActual);
+
+                var cargarMovimientos = new CargarMovimientos(_usuarioActual);
                 cargarMovimientos.Show();
 
-                
+
                 this.Close();
             }
             else
             {
                 MessageBox.Show("Por favor, selecciona un producto para ver sus movimientos.");
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
